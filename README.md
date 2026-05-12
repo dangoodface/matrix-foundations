@@ -68,20 +68,37 @@ lake build           # build the project
 
 On a clean machine with a warm cache, expect 5–15 minutes for the first build, after which incremental builds are fast.
 
-## Remaining axioms and the open Khovanskii track
+## Where this paused — work for future researchers
 
-The library has two axioms, both in `Sheffer/Examples/Eml.lean`:
+The H1.4 depth lower bound was the natural closure for this phase of the project. The next planned target was the Khovanskii descent — discharging the first of the two remaining axioms in `Sheffer/Examples/Eml.lean`. The opening sub-target was scoped and dispatched, the framework scaffolding is in place with theorem statements written and proof bodies left as `sorry`, but no full discharge landed before the pause. The section below is everything someone picking this up would need to resume.
 
-- **`eml_preserves_solvableMonodromy`** — Khovanskii's lemma. If `f` and `g` have solvable monodromy, so does `eml(f, g)`. A Lean discharge wants covering-space / Riemann-surface monodromy infrastructure in mathlib that does not yet exist; this was the next major formalization target before the project paused.
+### The two remaining axioms
+
+Both live in `Sheffer/Examples/Eml.lean`:
+
+- **`eml_preserves_solvableMonodromy`** — Khovanskii's lemma. If `f` and `g` have solvable monodromy, so does `eml(f, g)`. A Lean discharge wants covering-space / Riemann-surface monodromy infrastructure in mathlib that does not yet exist. This was the immediate next target.
 - **`quinticRoot_has_S5_monodromy_universal`** — the classical Galois fact that the generic quintic root function has `S₅` monodromy. Standard analytic-Galois material.
 
-The Khovanskii descent — discharging `eml_preserves_solvableMonodromy` — was scoped as multi-week work and partially started; the local infrastructure files `MonodromyGroup.lean`, `MultivaluedAnalytic.lean`, and `SolvableMonodromy.lean` already discharge the const/var cases against a concrete predicate. The remaining sub-targets, roughly in increasing order of difficulty, are:
+The const and var cases of the EML structural induction were originally part of a four-axiom set; they are now theorems, discharged against the concrete `hasSolvableMonodromy` predicate in `Sheffer/Foundations/SolvableMonodromy.lean`. The two axioms above are what survive.
 
-1. `sub_solvableMonodromy` — pullback through subtraction (~100–150 lines).
-2. `log_solvableMonodromy` — preservation under composition with `log` (~100–150 lines, requires universal-cover infrastructure).
-3. Final Khovanskii closure theorem (~50 lines once the two pieces above land).
+### Khovanskii roadmap
 
-Anyone interested in continuing this — particularly the mathlib covering-space angle — is encouraged to open an issue or just fork.
+The infrastructure for the descent is already on disk: `MonodromyGroup.lean` defines monodromy as a group action, `MultivaluedAnalytic.lean` builds the covering-map / per-sheet machinery, and `SolvableMonodromy.lean` gives the concrete predicate plus statement-level theorem skeletons (with `sorry` proof bodies) for each sub-target. What remains, in increasing order of difficulty:
+
+1. **`sub_solvableMonodromy`** — preservation under pullback by subtraction. Statement skeleton in place at `SolvableMonodromy.lean`; proof body is `sorry`. Was the next dispatched target (~100–150 lines, medium-hard).
+2. **`log_solvableMonodromy`** — preservation under composition with `log`. The hard one (~100–150 lines, wants universal-cover infrastructure not yet in mathlib).
+3. **Final Khovanskii closure** — composes the two above into `eml_preserves_solvableMonodromy` proper. The statement skeleton with a `sorry` proof body lives alongside the axiom version (~50 lines once the pieces land).
+
+`MultivaluedAnalytic.lean` also contains three further `sorry`-marked scaffolds (local-triviality and lift lemmas) supporting the descent. None are blocking the headline files.
+
+Whoever wants to take this on: the cleanest first step is `sub_solvableMonodromy` — the most contained of the three, and landing it discharges one of the two remaining axioms once the Khovanskii closure factors through. A natural parallel track is upstreaming the local `MonodromyGroup` / `MultivaluedAnalytic` material into mathlib proper.
+
+### Other open scaffolding
+
+- `MatrixFoundations/Eml.lean` (the early exploratory file, predates the framework) contains one legacy `sorry` for the original Khovanskii–Stylewarning theorem statement. It is superseded by the framework version in `Sheffer/Examples/Eml.lean` and can be deleted once anyone confirms nothing depends on it.
+- `Sheffer/Foundations/ArithCircuit.lean` has one private definitional-lemma `sorry` (`evalBoolSubstitute_m_zero` at line 295). The arithmetic-circuit / VP / VNP results still go through; closing the lemma is a straightforward `Sum.elim` / `Fin 0` exercise.
+
+Open an issue, or just fork — the license is Apache-2.0.
 
 ## References
 
