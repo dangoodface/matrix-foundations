@@ -177,7 +177,7 @@ def minTerm {n : ℕ} (chosen : Fin n → Bool) :
 
 /-! ### DNF correctness via classical case-split
 
-Researcher's 19:55 suggestion: avoid `simp [decide]` over-reduction by
+A design note suggests: avoid `simp [decide]` over-reduction by
 case-splitting classically. Two helper lemmas:
 
 - `minTerm_self_eval`: `(minTerm chosen).eval chosen = true`

@@ -19,7 +19,7 @@ import Mathlib.Algebra.Polynomial.Roots
 import Mathlib.Algebra.Polynomial.Degree.Lemmas
 import Mathlib.Tactic.NormNum
 -- Note: cleaner import for `Infinite ℝ` (e.g. Mathlib.SetTheory.Cardinal.Basic
--- per researcher's 0820 suggestion) attempted and didn't carry the instance
+-- per a design note) attempted and didn't carry the instance
 -- in this mathlib snapshot. Tracking-and-grep through mathlib for the actual
 -- carrier of `Infinite ℝ` is more work than the cosmetic ugliness justifies;
 -- staying with the Eml-transitive route. Revisit if Eml import becomes a

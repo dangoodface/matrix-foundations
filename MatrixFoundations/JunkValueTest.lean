@@ -4,7 +4,7 @@ import Mathlib.Tactic.FieldSimp
 /-
 # Junk-value-as-obstruction-converter — falsifiability test
 
-Self-test of the meta-claim made in `ai-math-implications/discussion.md` 02:15:
+Self-test of a meta-claim about mathlib's junk-value convention:
 
 > When a function has a junk-value extension to its full domain, partial-function
 > obstructions become concrete-witness obstructions. Witness-based non-existence

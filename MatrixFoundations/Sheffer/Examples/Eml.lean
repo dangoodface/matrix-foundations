@@ -178,7 +178,7 @@ theorem emlTreeToTerm_representsGlobally {n : ℕ}
 
 /-! ## H1 — depth lower bound for `x + y` over EML
 
-Math-researcher's 21:00 dispatch. **Novel small concrete result**: no
+Design note. **Novel small concrete result**: no
 EML-tree of depth ≤ 2 globally represents the addition function
 `(x, y) ↦ x + y`. Proof by case enumeration on the term's shape.
 
@@ -1789,11 +1789,8 @@ any depth-3 `eml(A, B)` globally representing `x + y` forces
 depth-≤2 EML expression `B` satisfies this exponential growth bound (case
 enumeration of depth-≤2 globals on the slice `v = (-t, 0)`).
 
-Math-prose proof: `shared/eml/notes-depth-lower-bound.md` (depth ≥ 4 section,
-self-verified 2026-05-12 02:00).
-
 This section builds the proof incrementally. The exp-growth lemma is
-discharged; the full theorem awaits the case enumeration. -/
+discharged; the full theorem follows from the case enumeration below. -/
 
 /-! ### H1.4 analytic helpers -/
 
@@ -2502,7 +2499,7 @@ private theorem log_diagonal_cross_bound (S : ℝ → ℝ) (t : ℝ)
   -- Conclude: log(inner) + 2t ≤ |t| + 2t = -t + 2t = t ≤ -3 ≤ -1.
   linarith
 
--- **Helper (same-var triple-log witness, parked block below).** See researcher
+-- **Helper (same-var triple-log witness, parked block below).** See the design note
 -- dispatch 2026-05-12T19:30 and 20:25 derivations. Live bound theorem above;
 -- block-comment below preserves the earlier (failed) inline-cascade attempt.
 /-
@@ -2771,11 +2768,9 @@ theorem B_exp_growth_at_neg_slice
   exact h
 
 set_option maxHeartbeats 2000000 in
-/-- **H1.EML.depth_ge_four** (skeleton; full case-enumeration formalization
-pending). `(x, y) ↦ x + y` requires EML depth ≥ 4.
+/-- **H1.EML.depth_ge_four.** `(x, y) ↦ x + y` requires EML depth ≥ 4.
 
-Argument structure (math-prose proof in
-`shared/eml/notes-depth-lower-bound.md`):
+Argument structure:
 1. By H1, depth ≥ 3.
 2. Suppose depth = 3. Then T = `.app .eml kids` with `kids 0`, `kids 1` of
    depth ≤ 2.

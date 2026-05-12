@@ -127,10 +127,7 @@ equation (`LinearMap.comp_assoc`, `LinearMap.comp_add`, `LinearMap.add_comp`) pl
 There is a shorter alternative for each: mathlib's `Matrix.mul_assoc`, `Matrix.mul_add`,
 `Matrix.add_mul` prove the matrix versions directly from the definition of matrix
 multiplication, with no detour through linear maps. The proofs below take the longer route on
-purpose, so a reader of `notes.md §7` finds the same chain in the formalization.
-
-(See `shared/ai-math-implications/notes.md T6` — *Formalization flattens pedagogical
-structure* — for the meta-discussion. This section is a deliberate non-flattening.) -/
+purpose, so the same pedagogical chain remains visible in the formalization. -/
 
 namespace MatrixFoundations.MatMul
 

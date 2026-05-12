@@ -1,28 +1,13 @@
 /-
 # EML — Odrzywołek's exp-minus-log operator
 
-Formalization of `eml(x, y) := exp(x) - ln(y)` and the foundational identities from
-Odrzywołek (arXiv:2603.21852, April 2026). See `shared/eml/notes.md` for the topic
-framing and the full target list.
+Formalization of `eml(x, y) := exp(x) - ln(y)` and the foundational identities
+from Odrzywołek (arXiv:2603.21852, April 2026).
 
-## Target list (researcher, `shared/eml/notes.md`)
-
-1. **Operator + sanity** (this file, this section). `eml(0, 1) = 1`.
-2. Addition from EML and 1 — the "5 levels of nesting" claim. **Pending — researcher's
-   `shared/eml/notes.md` says trace `a + b = ln(eᵃ · eᵇ)` through eml form, but the
-   explicit eml-tree for negation (the bottleneck) isn't in the paper's snippets I have.**
-3. Multiplication, similarly.
-4. Stylewarning counterexample — adversarial; the shareable artifact.
-5. Sanity oracle bridge to `~/eml-playground/eml.py`.
-
-## File location note
-
-This `.lean` file lives in the `MatrixFoundations` Lake project for toolchain reuse
-(mathlib is already cached here). Logical home is `shared/eml/`; a symlink at
-`shared/eml/proofs/Eml.lean → ../../matrix-foundations/proofs/MatrixFoundations/Eml.lean`
-makes the file discoverable from the topic folder. The right move if topic-locality
-matters more than disk economy is to give EML its own project and let mathlib cache
-again — ~7 GB.
+This is an early, exploratory file. The framework-based EML obstruction theory
+and depth lower bounds live in `Sheffer/Examples/Eml.lean`, built on
+`Sheffer/Core.lean`. One legacy `sorry` placeholder remains here for the
+Khovanskii-dependent obstruction; the framework version supersedes it.
 -/
 
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
@@ -329,7 +314,7 @@ theorem khovanskii_stylewarning_quintic :
           -- f⁵ + a₁f⁴ + a₂f³ + a₃f² + a₄f + a₅, when one exists.
           0) := by
   -- Genuine proof requires monodromy theory; left as future-work formalization.
-  -- See discussion.md and the topic notes.md for the obstruction sketch.
+  -- The obstruction sketch is in the framework version (Sheffer/Examples/Eml.lean).
   sorry
 
 end EML

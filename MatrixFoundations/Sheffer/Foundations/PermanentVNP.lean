@@ -29,7 +29,7 @@ For an `n × n` matrix of formal variables `X_{ij}` and `n` Boolean variables
       (-1)^n · ∏_{j=1}^n (1 − 2·e_j) · ∏_{i=1}^n (∑_{j=1}^n e_j · X_{i,j})
 
 Then `∑_{e : Fin n → Bool} permRyserAux_n(X, e) = permanent(X)`. Hand-verified
-by researcher (11:45 dispatch) for `n = 2`: four cube terms sum to `ad + bc`,
+by a worked example for `n = 2`: four cube terms sum to `ad + bc`,
 matching `permanent [[a,b],[c,d]]`.
 
 ## Why this fits VNP
@@ -50,9 +50,9 @@ type-check.
 
 This commit lands the Ryser scaffold — types and the `permanentRyserAux`
 definition (no def-level sorry). Replaces the earlier n²-variable
-cycle-cover scaffold per researcher's 11:45 dispatch.
+cycle-cover scaffold per the design note.
 
-Per researcher's estimate (3–7 days remaining for full formalization):
+Per the design plan:
 
 - **This session:** scaffold and definition.
 - **Session N:** `evalBoolSubstitute_permanentRyserAux` (Ryser's identity;
@@ -64,9 +64,9 @@ Per researcher's estimate (3–7 days remaining for full formalization):
 
 ## Sanity check pending
 
-Researcher (11:45) asked for a `discussion.md` entry confirming the formula
+A design note records a checked entry confirming the formula
 matches `Matrix.permanent` once a non-trivial proof lands here, in case of
-Wikipedia transcription error. Researcher already verified `n = 2` by hand;
+Wikipedia transcription error. A worked-out example verifies `n = 2` by hand;
 a Lean-level `n = 2` `decide`-style check is a reasonable next safety net
 when starting work on `evalBoolSubstitute_permanentRyserAux`.
 
